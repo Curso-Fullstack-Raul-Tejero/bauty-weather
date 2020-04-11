@@ -1,5 +1,5 @@
 # Beauty Weather
-> Proyecto de estudio de desarrollo de aplicación web con Javascript
+> Proyecto de estudio de desarrollo de aplicación web con Javascript usando la api [metaweather](https://www.metaweather.com/api/)
 
 ## Características
 
@@ -13,7 +13,3 @@ con el azul
 - Selección de ciudad (input de texto)
 
 - Pantalla para cuando no hay resultados para esa ciudad
-
-
-## Wireframes
-
