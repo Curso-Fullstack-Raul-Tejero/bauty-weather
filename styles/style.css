@@ -6,8 +6,9 @@
 }
 
 :root {
-    --padding: 10px;
+    --padding: 20px;
     --border-radius: 5px;
+    --height-time: 3em;
 }
 
 header {
@@ -16,7 +17,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    border: 1px solid rgb(15, 15, 15);
+    /* border: 1px solid rgb(15, 15, 15); */
     align-items: center;
 }   
     form {
@@ -39,23 +40,55 @@ header {
 section {
     max-width: 100%;
     padding: var(--padding);
-    border: 1px solid black;
-    
-}
+    /* border: 1px solid black; */
+    }
+
+    .hero {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+        .hero img {
+            width: 33.3%;
+        }
+
+        .hero time {
+            font-size: 1.5em;
+            width: 33.3%;
+            order: -1;
+        }
+        .hero ul {
+            width: 33.3%;
+            list-style: none;
+        }
+            li {
+                text-align: right;
+                font-size: 1.1em;
+            }
+
     .days {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        gap: var(--padding);
+        padding: 0;
     }
         .other-day {
-            padding: var(--padding);
-            border: 1px solid red;
+            text-align: center;
+            vertical-align: ;
         }
+        .other-day img,time {
+            width: 4em;
+            padding: 10px 0 10px 0;
+            display: block;
+            margin: auto;
+        }
+    
 
 footer {
     max-width: 100%;
-    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+    padding: 10px 0 10px 0;
+    /* border: 1px solid rgb(0, 0, 0); */
     
 }
 
