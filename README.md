@@ -13,3 +13,10 @@ con el azul
 - Selección de ciudad (input de texto)
 
 - Pantalla para cuando no hay resultados para esa ciudad
+
+
+### Conceptos
+
+- Eventos DOM
+- Loop ES6 (forEach)
+- classList

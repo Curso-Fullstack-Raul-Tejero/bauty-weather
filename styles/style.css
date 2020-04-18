@@ -43,14 +43,26 @@ section {
     
 }
     .days {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: var(--padding);
+        display: flex;
+        flex-wrap: wrap;
     }
         .other-day {
             padding: var(--padding);
             border: 1px solid red;
+            flex-basis: 33.3%;
+            box-sizing: border-box;
+            order: 2;
+        }
+
+        .other-day.hero {
+            flex-basis: 100%;
+            order: 1;
+        }
+
+        /* 'order' != 'first-child' */
+        .other-day:first-child {
+            background: tomato;
+            color: #fff;
         }
 
 footer {
