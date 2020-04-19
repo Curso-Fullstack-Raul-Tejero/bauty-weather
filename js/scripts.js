@@ -47,3 +47,37 @@ function clickDay(event) {
     $clickedDay.innerHTML = $heroContent;
     $hero.innerHTML = $dayContent;
 }
+
+
+
+/**********************
+ * 
+ * A J A X
+ * 
+ *********************/
+
+ // Objeto de petición => constructor (new)
+const request = new XMLHttpRequest();
+// Abrir la petición (prepararla)
+//  1. Verbo (método) de petición HTTP
+//  2. Url a la que se hace el envío
+request.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?q=madrid&appid=');
+//Antes de hacer el envío suscribimos eventos
+request.addEventListener('load', dataReceived);
+// envía la petición
+request.send();
+
+// callback de petición
+function dataReceived() {
+    // comprobamos que la petición sea exitosa => 200
+    if (request.status === 200) {
+        // Parseamos la respuesta para que sea JSON
+        const data = JSON.parse(request.response);
+        // Hacemos uso de los nodos que queramos
+        console.log(data);
+        // console.log(data.list[0]);
+        // TODO: extraer las predicciones de los días que necesitamos (vienen varias por día)
+        // TODO: extraer la info que necesitamos
+        // TODO: Sacar el icono del tiempo
+    }
+}
