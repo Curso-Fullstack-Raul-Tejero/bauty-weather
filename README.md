@@ -13,3 +13,9 @@ con el azul
 - Selección de ciudad (input de texto)
 
 - Pantalla para cuando no hay resultados para esa ciudad
+
+- [Eventos DOM](https://developer.mozilla.org/es/docs/Web/Events) 
+
+### Temas vistos
+- Loops básicos
+- Eventos DOM
