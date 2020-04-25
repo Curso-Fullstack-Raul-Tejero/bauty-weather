@@ -79,6 +79,7 @@ function dataReceived() {
 
         // Esto es un control para saber los días distintos en el bucle de filtrado
         let actual = null;
+        let actualHour = null;
         
         // .filter() filtra un array generando un nuevo con los elementos que han devuelto 'true'
         // 1. Recibe un callback que expone el elemento de la vuelta actual del bucle
@@ -87,10 +88,11 @@ function dataReceived() {
             const diaDePrediccion = fechaPrediccionActual.getDate();
             const horaDePrediccion = fechaPrediccionActual.getHours();
             // devulve el día del mes y hora
-            
-            if (diaDePrediccion !== actual && horaDePrediccion !== actual) {
+                            
+            if (diaDePrediccion !== actual && horaDePrediccion !== actualHour) {
                 // Si este día es nuevo, actualizo al actual
                 actual = diaDePrediccion;
+                actualHour = horaDePrediccion;
                 // Y me quedo con esta predicción
                 return true;
             }
