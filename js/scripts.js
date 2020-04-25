@@ -1,11 +1,11 @@
 // Referencia de elementos del DOM
-const $hero = document.getElementById('hero');
+const $hero = document.getElementById('hero'); 
 const $days = document.querySelectorAll('.other-day');
 
 
 // For necesita
 //  1. Variable de iteración (índice)
-//  2. Condición para seguir dando vueltas
+//  2. Condición para seguir dando vueltas (lenght=> total de elementos)
 //  3. Incrementar el índice
 // const numeros = [1,2,3,4];
 // for(let i = 0; i < numeros.length; i++) {
@@ -75,9 +75,15 @@ function dataReceived() {
         const data = JSON.parse(request.response);
         // Hacemos uso de los nodos que queramos
         console.log(data);
-        // console.log(data.list[0]);
+        console.log(data.list[0].main);
+        console.log(data.list[4].main);
+    
+        
         // TODO: extraer las predicciones de los días que necesitamos (vienen varias por día)
         // TODO: extraer la info que necesitamos
         // TODO: Sacar el icono del tiempo
+        
     }
 }
+
+// 0,4,12,20,28,36
