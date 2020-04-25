@@ -61,7 +61,7 @@ const request = new XMLHttpRequest();
 // Abrir la petición (prepararla)
 //  1. Verbo (método) de petición HTTP
 //  2. Url a la que se hace el envío
-request.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?q=madrid&appid=');
+request.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?q=madrid&appid=99db4352e0ce75276a335ec68856c395');
 //Antes de hacer el envío suscribimos eventos
 request.addEventListener('load', dataReceived);
 // envía la petición
@@ -74,9 +74,29 @@ function dataReceived() {
         // Parseamos la respuesta para que sea JSON
         const data = JSON.parse(request.response);
         // Hacemos uso de los nodos que queramos
-        console.log(data);
-        console.log(data.list[0].main);
-        console.log(data.list[4].main);
+        const forecastList = data.list; // Array
+        // const ahora = new Date(); // crea una instancia de objeto Fecha(Date)
+
+        // Esto es un control para saber los días distintos en el bucle de filtrado
+        let actual = null;
+        
+        // .filter() filtra un array generando un nuevo con los elementos que han devuelto 'true'
+        // 1. Recibe un callback que expone el elemento de la vuelta actual del bucle
+        const filteredForecastList = forecastList.filter(day => {
+            const fechaPrediccionActual = new Date(day.dt_txt); // cojo la fecha en String y creo un objeto fecha con ese dato
+            const diaDePrediccion = fechaPrediccionActual.getDate(); // devulve el día del mes
+            
+            if (diaDePrediccion !== actual) {
+                // Si este día es nuevo, actualizo al actual
+                actual = diaDePrediccion;
+                // Y me quedo con esta predicción
+                return true;
+            }
+
+            // En caso de que la predicciónsea el mismo día que el actual, no me interesa. 
+            // Solo quiero días nuevos
+            return false;
+        });
     
         
         // TODO: extraer las predicciones de los días que necesitamos (vienen varias por día)
