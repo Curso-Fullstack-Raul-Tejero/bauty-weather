@@ -87,7 +87,7 @@ function dataReceived() {
             const diaDePrediccion = fechaPrediccionActual.getDate();
             const horaDePrediccion = fechaPrediccionActual.getHours();
             // devulve el día del mes y hora
-            console.log(day);
+            
             if (diaDePrediccion !== actual && horaDePrediccion !== actual) {
                 // Si este día es nuevo, actualizo al actual
                 actual = diaDePrediccion;
