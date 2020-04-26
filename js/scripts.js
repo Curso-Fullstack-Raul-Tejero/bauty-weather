@@ -84,9 +84,11 @@ function dataReceived() {
         // 1. Recibe un callback que expone el elemento de la vuelta actual del bucle
         const filteredForecastList = forecastList.filter(day => {
             const fechaPrediccionActual = new Date(day.dt_txt); // cojo la fecha en String y creo un objeto fecha con ese dato
-            const diaDePrediccion = fechaPrediccionActual.getDate(); // devulve el día del mes
-            
-            if (diaDePrediccion !== actual) {
+            const diaDePrediccion = fechaPrediccionActual.getDate();
+            const horaDePrediccion = fechaPrediccionActual.getHours();
+            // devulve el día del mes y hora
+            console.log(day);
+            if (diaDePrediccion !== actual && horaDePrediccion !== actual) {
                 // Si este día es nuevo, actualizo al actual
                 actual = diaDePrediccion;
                 // Y me quedo con esta predicción
