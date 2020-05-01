@@ -61,7 +61,7 @@ const request = new XMLHttpRequest();
 // Abrir la petición (prepararla)
 //  1. Verbo (método) de petición HTTP
 //  2. Url a la que se hace el envío
-request.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?q=madrid&appid=99db4352e0ce75276a335ec68856c395');
+request.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?q=madrid&units=metric&appid=99db4352e0ce75276a335ec68856c395');
 //Antes de hacer el envío suscribimos eventos
 request.addEventListener('load', dataReceived);
 // envía la petición
@@ -89,7 +89,7 @@ function dataReceived() {
             const horaDePrediccion = fechaPrediccionActual.getHours();
             // devulve el día del mes y hora
                             
-            if (diaDePrediccion !== actual && horaDePrediccion !== actualHour) {
+            if ((diaDePrediccion !== actual && horaDePrediccion === actualHour) || (actual === null && actualHour === null)) {
                 // Si este día es nuevo, actualizo al actual
                 actual = diaDePrediccion;
                 actualHour = horaDePrediccion;
@@ -101,12 +101,40 @@ function dataReceived() {
             // Solo quiero días nuevos
             return false;
         });
-    
+
+        pintaDiasPrediccion(filteredForecastList);
+    }
+
+    // Función para pintar los datos filtrados
+    function pintaDiasPrediccion(listaFiltrada) {
+        const traduccionDias = [
+            'Domingo',
+            'Lunes',
+            'Martes',
+            'Miércoles',
+            'Jueves',
+            'Viernes',
+            'Sábado'
+        ];
         
-        // TODO: extraer las predicciones de los días que necesitamos (vienen varias por día)
-        // TODO: extraer la info que necesitamos
-        // TODO: Sacar el icono del tiempo
-        
+        listaFiltrada.forEach((prediccion, index) => {
+            const fechaDiaActual = new Date(prediccion.dt_txt);
+            // Recojo el día de la semana (0 - 6) de la predicción
+            const diaDeLaSemana = fechaDiaActual.getDay();
+            // Saco el nombre del día de la semana de mi array por la posición del día de la predicción
+            const diaDeLaSemanaActual = traduccionDias[diaDeLaSemana];
+
+            // Monto la url del icono para mostrar
+            const icon = prediccion.weather[0].icon;
+            const iconoTiempo = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+            // Pinto en el no TIME dentro del .other-day actual del bucle
+            $days[index].querySelector('time').innerText = diaDeLaSemanaActual;
+            // Cambio el valor 'src'
+            $days[index].querySelector('img').setAttribute('src', iconoTiempo);
+
+            console.log(prediccion);
+        });
     }
 }
 
