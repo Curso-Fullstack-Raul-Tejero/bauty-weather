@@ -24,6 +24,9 @@ for(let i = 0; i < $days.length; i++) {
 }
 
 
+
+
+
 /**
  * FUNCIONES
  * 
@@ -50,6 +53,69 @@ function clickDay(event) {
 
 
 
+
+/*
+
+var user = 'Gonzalo';
+
+function doSomething() {
+    const resultado = value + 2;
+
+    return {
+        result: resultado,
+        username: 'Pepito'
+    };
+}
+
+doSomething() // Window
+
+const doSomething = (value) => ({
+    result: value + 2,
+    username: 'Pepito'
+});
+
+doSomething(2) // => { result: 4, username: 'Pepito' }
+
+
+
+const coche = {
+    ruedas: 4,
+    puertas: 5,
+    cv: 130,
+    combustible: 'diesel',
+    encendido: false,
+    velocidad: 0,
+    deposito: 100,
+
+    arranca: () => { this.encendido = true },
+    acelera: () => {
+        if (this.encendido === false) {
+            this.arranca();
+        }
+
+        this.velocidad += 1;
+    },
+    getReserva: () => ({
+        restante: this.deposito - (this.velocidad / this.deposito)
+    })
+}
+
+coche.encendido // => false
+coche.arranca() // => undefined
+coche.encendido // => true
+
+coche.velocidad // => 0
+coche.acelera() // => undefined
+coche.velocidad // => 1
+
+const reserva = coche.getReserva() // => { restante: 99,9 }
+reserva.restante // => 99,9
+
+coche.acelera() // => undefined
+
+coche.getReserva().restante // => 99,8
+reserva.restante // => 99,9
+*/
 /**********************
  * 
  * A J A X
@@ -61,7 +127,7 @@ const request = new XMLHttpRequest();
 // Abrir la petición (prepararla)
 //  1. Verbo (método) de petición HTTP
 //  2. Url a la que se hace el envío
-request.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?q=madrid&units=metric&appid=99db4352e0ce75276a335ec68856c395');
+request.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?q=madrid&appid=99db4352e0ce75276a335ec68856c395');
 //Antes de hacer el envío suscribimos eventos
 request.addEventListener('load', dataReceived);
 // envía la petición
@@ -79,20 +145,23 @@ function dataReceived() {
 
         // Esto es un control para saber los días distintos en el bucle de filtrado
         let actual = null;
-        let actualHour = null;
+        
         
         // .filter() filtra un array generando un nuevo con los elementos que han devuelto 'true'
         // 1. Recibe un callback que expone el elemento de la vuelta actual del bucle
         const filteredForecastList = forecastList.filter(day => {
-            const fechaPrediccionActual = new Date(day.dt_txt); // cojo la fecha en String y creo un objeto fecha con ese dato
+            const fechaPrediccionActual = new Date(day.dt_txt); // cojo la fecha en    String y creo un objeto fecha con ese dato
+            // new Date() => ({
+                // getDate: () => Number
+                // getHours: () => Number
+            // })
             const diaDePrediccion = fechaPrediccionActual.getDate();
             const horaDePrediccion = fechaPrediccionActual.getHours();
             // devulve el día del mes y hora
                             
-            if ((diaDePrediccion !== actual && horaDePrediccion === actualHour) || (actual === null && actualHour === null)) {
+            if (diaDePrediccion !== actual && horaDePrediccion !== actual) {
                 // Si este día es nuevo, actualizo al actual
                 actual = diaDePrediccion;
-                actualHour = horaDePrediccion;
                 // Y me quedo con esta predicción
                 return true;
             }
@@ -102,40 +171,79 @@ function dataReceived() {
             return false;
         });
 
-        pintaDiasPrediccion(filteredForecastList);
-    }
 
-    // Función para pintar los datos filtrados
-    function pintaDiasPrediccion(listaFiltrada) {
-        const traduccionDias = [
-            'Domingo',
-            'Lunes',
-            'Martes',
-            'Miércoles',
-            'Jueves',
-            'Viernes',
-            'Sábado'
-        ];
+        const   dateHero = filteredForecastList[0];
+        const   hourDateHero = dateHero.dt_txt;
+        const   dateHeroActual = dateHero.main;        
+        // const   dataHeroSplice = dateHero.main.splice(0);
+        const   dateHeroDay = new Date (hourDateHero);
+        console.log(dateHeroDay);
+
+        const   $heroTime = $hero.querySelector(".hero--date"),
+                $heroIndex = $hero.querySelector(".item.index"),
+                $heroMax = $hero.querySelector(".item.max"),
+                $heroMin = $hero.querySelector(".item.min"),
+                $heroHumidity = $hero.querySelector(".item.humidity");
+
         
-        listaFiltrada.forEach((prediccion, index) => {
-            const fechaDiaActual = new Date(prediccion.dt_txt);
-            // Recojo el día de la semana (0 - 6) de la predicción
-            const diaDeLaSemana = fechaDiaActual.getDay();
-            // Saco el nombre del día de la semana de mi array por la posición del día de la predicción
-            const diaDeLaSemanaActual = traduccionDias[diaDeLaSemana];
+        $heroTime.innerText = dateHeroDay.toDateString();
+        $heroIndex.innerText = dateHeroActual.temp + "actual";
+        $heroMax.innerText = dateHeroActual.temp_max +" max." ;
+        $heroMin.innerText = dateHeroActual.temp_min + " min.";
+        $heroHumidity.innerText = dateHeroActual.humidity + " % humidity";
+        
+        const   $secondDayTime = document.querySelector(".second-day-time"),
+                $thirdDayTime = document.querySelector(".third-day-time"),
+                $fourthDayTime = document.querySelector(".fourth-day-time"),
+                $fifthDayTime = document.querySelector(".fifth-day-time");
+        
+        
+        const traducctionDay = [
+            "Domingo",
+            "Lunes",
+            "Martes",
+            "Miercoles",
+            "jueves",
+            "Viernes"
+        ];
 
-            // Monto la url del icono para mostrar
-            const icon = prediccion.weather[0].icon;
-            const iconoTiempo = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+        const dateSecondDay = new Date (filteredForecastList[1].dt_txt);
+        const dateThirdDay = new Date (filteredForecastList[2].dt_txt);
+        const dateFourthDay = new Date (filteredForecastList[3].dt_txt);
+        const dateFifthDAy = new Date (filteredForecastList[4].dt_txt);
 
-            // Pinto en el no TIME dentro del .other-day actual del bucle
-            $days[index].querySelector('time').innerText = diaDeLaSemanaActual;
-            // Cambio el valor 'src'
-            $days[index].querySelector('img').setAttribute('src', iconoTiempo);
+        $secondDayTime.innerText = dateSecondDay.toDateString();
+        $thirdDayTime.innerText =  dateThirdDay.toDateString();
+        $fourthDayTime.innerText = dateFourthDay.toDateString();
+        $fifthDayTime.innerText =  dateFifthDAy.toDateString();
 
-            console.log(prediccion);
-        });
+        function writeApiIcon(icon) {
+                return ("http://openweathermap.org/img/wn/"+icon+"@2x.png");
+        }
+        
+        const   $forecastImg = document.querySelector(".forecast-img"),
+                $seconDayImg = document.querySelector(".second-day-img"),
+                $thirdDayImg = document.querySelector(".third-day-img"),
+                $fourthDayImg = document.querySelector(".fourth-day-img"),
+                $fifthDayImg = document.querySelector(".fifth-day-img");
+
+        $forecastImg.src = writeApiIcon(filteredForecastList[0].weather[0].icon);
+        $seconDayImg.src = writeApiIcon(filteredForecastList[1].weather[0].icon);
+        $thirdDayImg.src = writeApiIcon(filteredForecastList[2].weather[0].icon);
+        $fourthDayImg.src = writeApiIcon(filteredForecastList[3].weather[0].icon);
+        $fifthDayImg.src = writeApiIcon(filteredForecastList[4].weather[0].icon);
+
+        console.log(filteredForecastList);
     }
+    
 }
 
-// 0,4,12,20,28,36
+
+// TODO: dias semana
+
+
+
+
+
+
+

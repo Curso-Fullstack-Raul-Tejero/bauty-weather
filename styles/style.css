@@ -5,10 +5,19 @@
     
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap');
+
 :root {
     --padding: 20px;
     --border-radius: 5px;
     --height-time: 3em;
+}
+body {
+    background: rgb(248,254,254);
+    background: rgb(61, 133, 216);
+    font-family: 'Jost', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
 }
 
 header {
@@ -56,6 +65,7 @@ section {
             font-size: 1.5em;
             width: 33.3%;
             order: -1;
+            
         }
         .hero ul {
             width: 33.3%;
@@ -68,16 +78,16 @@ section {
 
     .days {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         padding: 0;
+        background-color:    rgb(173, 194, 218);
     }
         .other-day {
             text-align: center;
-            vertical-align: ;
         }
         .other-day img,time {
-            width: 4em;
+            width: 5em;
             padding: 10px 0 10px 0;
             display: block;
             margin: auto;

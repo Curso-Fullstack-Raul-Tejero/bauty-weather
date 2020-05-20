@@ -13,23 +13,39 @@
     <header>
         <h1>Beauty Weather</h1>
         <form action="">
-            <input type="text" placeholder="Escribe la ciudad" required>
-            <button type="submit" value="">Seleccionar</button>
+            <input type="text" placeholder="Write the city " required>
+            <button type="submit" value="">Select</button>
         </form>
     </header>
     <main>
         <section id="hero" class="hero">
-            <img src="https://www.metaweather.com/static/img/weather/lc.svg" width="200" />
-            <time>time </time>
-            <ul>
-                <li>Índice de predicción</li>
-                <li>Temp máx</li>
-                <li>Temp min</li>
-                <li>Humedad</li>
+            <img class="forecast-img" src="" width="200" />
+            <time class="hero--date">time </time>
+            <ul class="hero--forecast-info">
+                <li class="item index">item</li>
+                <li class="item max">Temp máx</li>
+                <li class="item min">Temp min</li>
+                <li class="item humidity">Humidity</li>
             </ul>
         </section>
         <section class="days">
-            <article class="other-day">
+            <article class="other-day second-day">
+                <img class="second-day-img" src="" alt="imagen-tiempo">
+                <time class="second-day-time">time</time>
+            </article>
+            <article class="other-day ">
+                <img class="third-day-img" src="" alt="imagen-tiempo">
+                <time class="third-day-time" >time</time>
+            </article>
+            <article class="other-day ">
+                <img class="fourth-day-img" src="" alt="imagen-tiempo">
+                <time class="fourth-day-time">time</time>
+            </article>
+            <article class="other-day ">
+                <img class="fifth-day-img" src="" alt="imagen-tiempo">
+                <time class="fifth-day-time">time</time>
+            </article>
+            <!-- <article class="other-day">
                 <img src="https://www.metaweather.com/static/img/weather/lc.svg" alt="imagen-tiempo">
                 <time>time</time>
             </article>
@@ -37,23 +53,7 @@
                 <img src="https://www.metaweather.com/static/img/weather/lc.svg" alt="imagen-tiempo">
                 <time>time</time>
             </article>
-            <article class="other-day">
-                <img src="https://www.metaweather.com/static/img/weather/lc.svg" alt="imagen-tiempo">
-                <time>time</time>
-            </article>
-            <article class="other-day">
-                <img src="https://www.metaweather.com/static/img/weather/lc.svg" alt="imagen-tiempo">
-                <time>time</time>
-            </article>
-            <article class="other-day">
-                <img src="https://www.metaweather.com/static/img/weather/lc.svg" alt="imagen-tiempo">
-                <time>time</time>
-            </article>
-            <article class="other-day">
-                <img src="https://www.metaweather.com/static/img/weather/lc.svg" alt="imagen-tiempo">
-                <time>time</time>
-            </article>
-        </section>
+        </section> -->
     </main>
     <footer>footer</footer>
     <script src="js/scripts.js"></script>
