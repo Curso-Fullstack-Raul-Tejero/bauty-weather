@@ -1,5 +1,7 @@
+// cambio
+
 // Referencia de elementos del DOM
-const $hero = document.getElementById('hero'); 
+const $hero = document.getElementById('hero');
 const $days = document.querySelectorAll('.other-day');
 
 
@@ -9,14 +11,14 @@ const $days = document.querySelectorAll('.other-day');
 //  3. Incrementar el índice
 // const numeros = [1,2,3,4];
 // for(let i = 0; i < numeros.length; i++) {
-    //     console.log(i, numeros[i]);
-    // }
-    
-    
+//     console.log(i, numeros[i]);
+// }
+
+
 // Eventos
-for(let i = 0; i < $days.length; i++) {
+for (let i = 0; i < $days.length; i++) {
     const $currentDay = $days[i];
-    
+
     // addEventListener escucha señales (eventos) de un elemento DOM
     //  1. El evento a escuchar
     //  2. La función que se ejecuta cuando suceda (callback)
@@ -45,7 +47,7 @@ function clickDay(event) {
     const $dayContent = $clickedDay.innerHTML;
     // Referencio el contenido del Hero
     const $heroContent = $hero.innerHTML;
-    
+
     // Intercambio contenidos
     $clickedDay.innerHTML = $heroContent;
     $hero.innerHTML = $dayContent;
@@ -122,7 +124,7 @@ reserva.restante // => 99,9
  * 
  *********************/
 
- // Objeto de petición => constructor (new)
+// Objeto de petición => constructor (new)
 const request = new XMLHttpRequest();
 // Abrir la petición (prepararla)
 //  1. Verbo (método) de petición HTTP
