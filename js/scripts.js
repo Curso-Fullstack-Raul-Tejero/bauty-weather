@@ -53,71 +53,6 @@ function clickDay(event) {
     $hero.innerHTML = $dayContent;
 }
 
-
-
-
-/*
-
-var user = 'Gonzalo';
-
-function doSomething() {
-    const resultado = value + 2;
-
-    return {
-        result: resultado,
-        username: 'Pepito'
-    };
-}
-
-doSomething() // Window
-
-const doSomething = (value) => ({
-    result: value + 2,
-    username: 'Pepito'
-});
-
-doSomething(2) // => { result: 4, username: 'Pepito' }
-
-
-
-const coche = {
-    ruedas: 4,
-    puertas: 5,
-    cv: 130,
-    combustible: 'diesel',
-    encendido: false,
-    velocidad: 0,
-    deposito: 100,
-
-    arranca: () => { this.encendido = true },
-    acelera: () => {
-        if (this.encendido === false) {
-            this.arranca();
-        }
-
-        this.velocidad += 1;
-    },
-    getReserva: () => ({
-        restante: this.deposito - (this.velocidad / this.deposito)
-    })
-}
-
-coche.encendido // => false
-coche.arranca() // => undefined
-coche.encendido // => true
-
-coche.velocidad // => 0
-coche.acelera() // => undefined
-coche.velocidad // => 1
-
-const reserva = coche.getReserva() // => { restante: 99,9 }
-reserva.restante // => 99,9
-
-coche.acelera() // => undefined
-
-coche.getReserva().restante // => 99,8
-reserva.restante // => 99,9
-*/
 /**********************
  * 
  * A J A X
@@ -151,12 +86,9 @@ function dataReceived() {
         
         // .filter() filtra un array generando un nuevo con los elementos que han devuelto 'true'
         // 1. Recibe un callback que expone el elemento de la vuelta actual del bucle
-        const filteredForecastList = forecastList.filter(day => {
-            const fechaPrediccionActual = new Date(day.dt_txt); // cojo la fecha en    String y creo un objeto fecha con ese dato
-            // new Date() => ({
-                // getDate: () => Number
-                // getHours: () => Number
-            // })
+            const filteredForecastList = forecastList.filter(day => {
+            const fechaPrediccionActual = new Date(day.dt_txt); // cojo la fecha en    String y creo un objeto 
+            
             const diaDePrediccion = fechaPrediccionActual.getDate();
             const horaDePrediccion = fechaPrediccionActual.getHours();
             // devulve el día del mes y hora
@@ -240,8 +172,6 @@ function dataReceived() {
     
 }
 
-
-// TODO: dias semana
 
 
 
