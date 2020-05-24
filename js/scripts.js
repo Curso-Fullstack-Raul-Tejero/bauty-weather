@@ -1,5 +1,7 @@
+// cambio
+
 // Referencia de elementos del DOM
-const $hero = document.getElementById('hero'); 
+const $hero = document.getElementById('hero');
 const $days = document.querySelectorAll('.other-day');
 
 
@@ -9,14 +11,14 @@ const $days = document.querySelectorAll('.other-day');
 //  3. Incrementar el índice
 // const numeros = [1,2,3,4];
 // for(let i = 0; i < numeros.length; i++) {
-    //     console.log(i, numeros[i]);
-    // }
-    
-    
+//     console.log(i, numeros[i]);
+// }
+
+
 // Eventos
-for(let i = 0; i < $days.length; i++) {
+for (let i = 0; i < $days.length; i++) {
     const $currentDay = $days[i];
-    
+
     // addEventListener escucha señales (eventos) de un elemento DOM
     //  1. El evento a escuchar
     //  2. La función que se ejecuta cuando suceda (callback)
@@ -42,7 +44,7 @@ function clickDay(event) {
     const $dayContent = $clickedDay.innerHTML;
     // Referencio el contenido del Hero
     const $heroContent = $hero.innerHTML;
-    
+
     // Intercambio contenidos
     $clickedDay.innerHTML = $heroContent;
     $hero.innerHTML = $dayContent;
@@ -56,7 +58,7 @@ function clickDay(event) {
  * 
  *********************/
 
- // Objeto de petición => constructor (new)
+// Objeto de petición => constructor (new)
 const request = new XMLHttpRequest();
 // Abrir la petición (prepararla)
 //  1. Verbo (método) de petición HTTP
@@ -80,7 +82,7 @@ function dataReceived() {
         // Esto es un control para saber los días distintos en el bucle de filtrado
         let actual = null;
         let actualHour = null;
-        
+
         // .filter() filtra un array generando un nuevo con los elementos que han devuelto 'true'
         // 1. Recibe un callback que expone el elemento de la vuelta actual del bucle
         const filteredForecastList = forecastList.filter(day => {
@@ -88,7 +90,7 @@ function dataReceived() {
             const diaDePrediccion = fechaPrediccionActual.getDate();
             const horaDePrediccion = fechaPrediccionActual.getHours();
             // devulve el día del mes y hora
-                            
+
             if ((diaDePrediccion !== actual && horaDePrediccion === actualHour) || (actual === null && actualHour === null)) {
                 // Si este día es nuevo, actualizo al actual
                 actual = diaDePrediccion;
@@ -116,7 +118,7 @@ function dataReceived() {
             'Viernes',
             'Sábado'
         ];
-        
+
         listaFiltrada.forEach((prediccion, index) => {
             const fechaDiaActual = new Date(prediccion.dt_txt);
             // Recojo el día de la semana (0 - 6) de la predicción
